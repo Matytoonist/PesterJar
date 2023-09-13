@@ -68,16 +68,25 @@ public class main extends MIDlet implements CommandListener{
 		notifyDestroyed();
 	}
 	
+	public void AddChum(){
+		display.setCurrent(AddChum);
+		AddChum.addCommand(View);
+		AddChum.addCommand(Exit);
+		AddChum.setCommandListener(this);
+	}
+	
+	public void ChumList(){
+		display.setCurrent(Chumlist);
+		Chumlist.setCommandListener(this);
+	}
+	
 	//This one determines what will each command do. I know the implementation is horrible but bear with me.
 	public void commandAction(Command c, Displayable s){
 		//here it defines a string object and gives it the selected command's label as data.
 		String label = c.getLabel();
 		//and then proceeds to do a whole lot of IF/ELSE statements to check which command was pressed and react accordingly
 		if (label.equals("Add Chum")){
-			display.setCurrent(AddChum);
-			AddChum.addCommand(View);
-			AddChum.addCommand(Exit);
-			AddChum.setCommandListener(this);
+			AddChum();
 		}
 		else if (label.equals("Exit")){
 			destroyApp(false);
@@ -95,8 +104,7 @@ public class main extends MIDlet implements CommandListener{
 			Chumlist.setCommandListener(this);
 		}
 		else if (label.equals("Ok")){
-			display.setCurrent(Chumlist);
-			Chumlist.setCommandListener(this);
+			ChumList();
 		}
 		else if (label.equals("Select Chums")){
 			display.setCurrent(ChumSelect);
